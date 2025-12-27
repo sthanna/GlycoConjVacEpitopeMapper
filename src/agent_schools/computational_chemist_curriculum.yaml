@@ -1,0 +1,35 @@
+role: Computational Chemist
+foundational:
+  topics:
+    - Protein structure basics (secondary/tertiary structure)
+    - Glycan chemistry and stereochemistry
+    - Basics of Molecular Dynamics (MD)
+    - AlphaFold glycoprotein structure prediction # Strategy Doc Query
+    - GLYCAM carbohydrate MD                      # Strategy Doc Query
+    - Rosetta antibody-antigen interface scoring  # Strategy Doc Query
+  resources:
+    - type: guidebook
+      title: "GROMACS User Guide"
+      link: "https://manual.gromacs.org/"
+intermediate:
+  topics:
+    - Homology modeling and AlphaFold
+    - Glycosylation modeling (GLYCAM force fields)
+    - Solvent accessibility and surface calculations
+  resources:
+    - type: article
+      title: "Modeling glycoproteins with AlphaFold"
+      link: ""
+advanced:
+  topics:
+    - Docking algorithms for large complexes
+    - Free energy perturbation methods
+    - Analyzing conformational ensembles
+  resources:
+    - type: article
+      title: "Advanced sampling in MD"
+      link: ""
+assessment_objectives:
+  - Generate valid 3D structures of glycoconjugates
+  - Assess stereochemical quality of glycan models
+  - Calculate solvent-accessible surface area (SASA) for specific residues

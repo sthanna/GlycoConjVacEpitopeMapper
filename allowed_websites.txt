@@ -1,0 +1,7 @@
+# Allowed Websites
+
+https://www.ncbi.nlm.nih.gov
+https://eutils.ncbi.nlm.nih.gov
+https://manual.gromacs.org
+https://huggingface.co
+http://tools.iedb.org

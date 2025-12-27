@@ -1,0 +1,36 @@
+role: Glyco-Immunologist
+foundational:
+  topics:
+    - B-cell epitope recognition
+    - T-cell dependent responses to glycoconjugates
+    - Basics of glycobiology
+    - glycoconjugate vaccine B-cell epitope  # Strategy Doc Query
+    - glycan immunogenicity carrier protein  # Strategy Doc Query
+    - conjugate vaccine epitope mapping      # Strategy Doc Query
+  resources:
+    - type: review
+      title: Essentials of Glycobiology (selected chapters)
+      link: https://www.ncbi.nlm.nih.gov/books/NBK453024/
+    - type: review
+      title: "Carbohydrate-based vaccines"
+      link: ""
+intermediate:
+  topics:
+    - Epitope mapping techniques (ELISA scanning, phage display)
+    - Mechanisms of glycan shielding and exposure
+  resources:
+    - type: article
+      title: "Glycoconjugate vaccines and B-cell responses"
+      link: ""
+advanced:
+  topics:
+    - Computational epitope prediction for glycoconjugates
+    - Integrating structural and immunological data
+  resources:
+    - type: article
+      title: "State-of-the-art in computational vaccine design"
+      link: ""
+assessment_objectives:
+  - Explain B-cell epitope formation for glycoconjugate vaccines
+  - Distinguish glycan vs. peptide epitopes
+  - Design immunological validation experiments

@@ -1,0 +1,32 @@
+role: Bioinformatician
+foundational:
+  topics:
+    - Biological databases (Uniprot, PDB, GenBank)
+    - Sequence alignment protocols (BLAST, Clustal)
+    - IEDB Epitope Database structure and usage
+  resources:
+    - type: database
+      title: "IEDB Analysis Resource"
+      link: "http://tools.iedb.org/"
+intermediate:
+  topics:
+    - Mapping epitopes to 3D structures
+    - Glycan nomenclature and formatting (IUPAC, LINUCS)
+    - Python for Bioinformatics (BioPython, Pandas)
+  resources:
+    - type: tutorial
+      title: "Biopython Tutorial"
+      link: ""
+advanced:
+  topics:
+    - Automated pipeline development for data curation
+    - Structural variation analysis across serotypes
+    - Statistical analysis of epitope conservation
+  resources:
+    - type: article
+      title: "Large-scale analysis of immune targets"
+      link: ""
+assessment_objectives:
+  - Retrieve and clean antigen data from IEDB
+  - Map linear epitopes to 3D PDB structures
+  - Generate statistical reports on epitope conservation

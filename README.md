@@ -1,54 +1,56 @@
-# Virtual Lab
+# GlycoConjVacEpitopeMapper
+**Mapping Conformational Epitopes on Glycoconjugate Vaccines using Virtual Lab Agents**
 
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/virtual-lab)](https://badge.fury.io/py/virtual-lab)
-[![PyPI version](https://badge.fury.io/py/virtual-lab.svg)](https://badge.fury.io/py/virtual-lab)
-[![Downloads](https://pepy.tech/badge/virtual-lab)](https://pepy.tech/project/virtual-lab)
-[![license](https://img.shields.io/github/license/zou-group/virtual-lab.svg)](https://github.com/zou-group/virtual-lab/blob/main/LICENSE.txt)
+## Overview
+This repository contains the `GlycoConjVacEpitopeMapper` project, a comprehensive multi-agent system designed to optimize glycoconjugate vaccine design. It integrates **Agentic AI**, **Structural Bioinformatics** (AlphaFold 3/Boltz-1), and **Deep Learning** (ESM-2) to identify optimal B-cell epitopes on molecular scaffolds.
 
-![Virtual Lab](images/virtual_lab_architecture.png)
+## Repository Structure
+- `src/virtual_lab`: Core logic for `Agent` class, RAG retrieval, and meeting orchestration.
+- `src/agent_schools`: Curricula and vector store builders for training agents.
+- `src/virtual_lab/epitope_mapping`: Modules for structural analysis (PDB), feature extraction (ESM-2), and predictive modeling.
+- `data/knowledge_base`: Local FAISS vector stores containing "graduated" agent knowledge.
+- `data/structures`: Raw PDB files (e.g., CRM197).
+- `data/meeting_transcript_*.txt`: Logs of multi-agent planning sessions.
 
-The **Virtual Lab** is an AI-human collaboration for science research. In the Virtual Lab, a human researcher works with a team of large language model (LLM) **agents** to perform scientific research. Interaction between the human researcher and the LLM agents occurs via a series of **team meetings**, where all the LLM agents discuss a scientific agenda posed by the human researcher, and **individual meetings**, where the human researcher interacts with a single LLM agent to solve a particular scientific task.
-
-Please see our paper [The Virtual Lab of AI agents designs new SARS-CoV-2 nanobodies](https://www.nature.com/articles/s41586-025-09442-9) for more details on the Virtual Lab and an application to nanobody design for SARS-CoV-2.
-
-If you use the Virtual Lab, please cite our work as follows:
-
-Swanson, K., Wu, W., Bulaong, N.L. et al. The Virtual Lab of AI agents designs new SARS-CoV-2 nanobodies. *Nature* (2025). https://doi.org/10.1038/s41586-025-09442-9
-
-
-## Virtual Lab for nanobody design
-
-As a real-world demonstration, we applied the Virtual Lab to design nanobodies for one of the latest variants of SARS-CoV-2 (see [nanobody_design](https://github.com/zou-group/virtual-lab/tree/main/nanobody_design)). The Virtual Lab built a computational pipeline consisting of [ESM](https://www.science.org/doi/10.1126/science.ade2574), [AlphaFold-Multimer](https://www.biorxiv.org/content/10.1101/2021.10.04.463034v2), and [Rosetta](https://rosettacommons.org/software/) and used it to design 92 nanobodies that were experimentally validated.
-
-Please see the notebook [nanobody_design/run_nanobody_design.ipynb](https://github.com/zou-group/virtual-lab/blob/main/nanobody_design/run_nanobody_design.ipynb) for an example of how to use the Virtual Lab to create agents and run team and individual meetings.
-
+## Key Features
+- **Multi-Agent RAG**: Agents (Glyco-Immunologist, Chemist, ML Specialist, Bioinformatician) query localized knowledge bases during collaboration.
+- **Evo-Struct Pipeline**: Combines evolutionary sequence conservation (pan-genome) with 3D structural mapping.
+- **Gym-to-Lab**: Agents undergo a "School" phase (reading PubMed abstracts) before entering the "Virtual Lab" (executing code).
+- **Gemini Powered**: Uses Google's Gemini (via `google-generativeai`) for stateful reasoning.
 
 ## Installation
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/yourusername/GlycoConjVacEpitopeMapper.git
+    cd GlycoConjVacEpitopeMapper
+    ```
 
-The Virtual Lab can be installed using pip or by cloning the repo and installing the required packages. Installation should only take a couple of minutes.
+2.  **Set up Conda Environment**:
+    ```bash
+    conda env create -f environment.yml
+    conda activate epitope_mapping
+    ```
 
-Optionally, first create a conda environment.
+3.  **Install Python Dependencies**:
+    ```bash
+    pip install .
+    # Or for editable mode
+    pip install -e .
+    ```
 
-```bash
-conda create -y -n virtual_lab python=3.12
-conda activate virtual_lab
-```
+4.  **Configuration**:
+    - Update `src/virtual_lab/constants.py` with your **Gemini API Key**.
+    - Ensure `data/knowledge_base/` is populated (run `run_indexing.py` if needed).
 
-The Virtual Lab can be installed via pip.
+## Usage
+- **Run a Team Meeting**:
+    ```bash
+    python src/virtual_lab/main_epitope_mapping.py
+    ```
+- **Train the Epitope Predictor**:
+    ```bash
+    python src/virtual_lab/epitope_mapping/train.py
+    ```
 
-```bash
-pip install virtual-lab
-```
-
-To install a local version of the Virtual Lab, clone the repo and then install the package.
-
-```bash
-git clone https://github.com/zou-group/virtual_lab.git
-cd virtual_lab
-pip install -e .
-```
-
-
-## OpenAI API Key
-
-The Virtual Lab currently uses GPT-4o from OpenAI. Save your OpenAI API key as the environment variable `OPENAI_API_KEY`. For example, add `export OPENAI_API_KEY=<your_key>` to your `.bashrc` or `.bash_profile`.
+## License
+MIT License

@@ -3,23 +3,22 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "virtual-lab"
+name = "GlycoConjVacEpitopeMapper"
 dynamic = ["version"]
 authors = [
-    { name = "Kyle Swanson", email = "swansonk.14@gmail.com" },
+    { name = "Bioinformatician Agent", email = "agent@virtuallab.ai" },
 ]
 maintainers = [
-    { name = "Kyle Swanson", email = "swansonk.14@gmail.com" },
+    { name = "Project Lead", email = "lead@virtuallab.ai" },
 ]
-description = "A virtual lab of large language model agents for scientific research."
+description = "A multi-agent system for computational epitope mapping of glycoconjugate vaccines."
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
 dependencies = [
     "notebook",
-    "openai",
+    "google-generativeai",
     "requests",
-    "tiktoken",
     "tqdm",
     "typed-argument-parser",
 ]

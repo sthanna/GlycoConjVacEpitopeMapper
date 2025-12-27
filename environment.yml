@@ -1,0 +1,30 @@
+name: epitope_mapping
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - pandas
+  - scikit-learn
+  - pip
+  - pip:
+    - google-generativeai
+    - torch
+    - torchvision
+    - torchaudio
+    - transformers
+    - datasets
+    - biopython
+    - biopandas
+    - mdtraj
+    - matplotlib
+    - seaborn
+    - plotly
+    - langchain
+    - weaviate-client
+    - sentence-transformers
+    - pydantic[dotenv]
+    - typer
+    - rich

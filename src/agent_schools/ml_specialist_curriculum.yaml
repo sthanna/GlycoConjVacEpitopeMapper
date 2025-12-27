@@ -1,0 +1,34 @@
+role: ML Specialist
+foundational:
+  topics:
+    - Basics of Deep Learning (MLPs, CNNs, RNNs)
+    - Protein language models (ESM-2, ProtBERT)
+    - Model evaluation metrics (Precision, Recall, ROC-AUC)
+    - protein language model epitope prediction        # Strategy Doc Query
+    - geometric deep learning conformational epitope   # Strategy Doc Query
+  resources:
+    - type: library
+      title: "HuggingFace Transformers Documentation"
+      link: "https://huggingface.co/docs"
+intermediate:
+  topics:
+    - Graph Neural Networks (GNNs) for molecular data
+    - Feature engineering for proteins and glycans
+    - Handling class imbalance in biological datasets
+  resources:
+    - type: article
+      title: "Geometric Deep Learning for Proteins"
+      link: ""
+advanced:
+  topics:
+    - 3D-equivariant neural networks
+    - Multimodal learning (Sequence + Structure)
+    - Interpretability methods (Attention maps, Integrated Gradients)
+  resources:
+    - type: article
+      title: "Deep learning for epitope prediction"
+      link: ""
+assessment_objectives:
+  - Design a GNN architecture for protein surface analysis
+  - Implement a training pipeline with proper validation splits
+  - Interpret model predictions to identify critical residues
