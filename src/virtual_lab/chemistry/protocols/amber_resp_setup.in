@@ -1,0 +1,32 @@
+# Amber Inputs for RESP Charge Calculation of MenA-Linker-Lysine Adduct
+# Step 1: Geometry Optimization (Gaussian 16 format)
+%chk=linker_opt.chk
+#p HF/6-31G* Opt Freq Pop=MK iop(6/33=2)
+
+Linker Adduct Optimization
+
+0 1
+C   -1.23   0.50   0.00
+H   -1.23   0.50   1.09
+# ... (Coordinates would be inserted here from BioPython builder) ...
+
+# Step 2: Antechamber RESP generation (Amber format)
+antechamber -i linker_opt.log -fi gout -o linker.mol2 -fo mol2 -c resp -rn LNK -at gaff2
+
+# Step 3: Parmincheck to generate missing parameters
+parmchk2 -i linker.mol2 -f mol2 -o linker.frcmod
+
+# Step 4: LEaP input for library creation
+source leaprc.GLYCAM_06j-1
+source leaprc.protein.ff14SB
+source leaprc.gaff2
+
+# Load the custom linker residue
+LNK = loadmol2 linker.mol2
+loadamberparams linker.frcmod
+
+# Save library for future use
+saveoff LNK linker.lib
+saveamberparm LNK linker.prmtop linker.inpcrd
+
+quit

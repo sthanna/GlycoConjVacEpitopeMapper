@@ -1,7 +1,7 @@
 """Holds constants."""
 
 DEFAULT_MODEL = "gemini-3-flash-preview"
-GEMINI_API_KEY = "AIzaSyB3SBv3W4hUyD085Zt9SPcQ1SDVg72JhoE"
+GEMINI_API_KEY = "AIzaSyAarvWr0hFZWw6fOSxnGpkMMmXPudtYHdU"
 
 # Prices Placeholders (Gemini pricing varies, leaving empty or generic for now)
 MODEL_TO_INPUT_PRICE_PER_TOKEN = {}

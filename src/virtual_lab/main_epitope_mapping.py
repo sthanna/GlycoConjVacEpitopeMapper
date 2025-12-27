@@ -72,17 +72,22 @@ def main():
         spec = "Project Specification not found. Using default goals."
 
     agenda = f"""
-    PROJECT KICKOFF
-    Review the Project Specification below and propose a detailed workflow for Phase 1.
+    PHASE 1 RESEARCH PLANNING: SCOPE AND TARGETS
+    Review the Project Specification below. We must define the functional scope for the Virtual Lab.
     
     ---
     {spec}
     ---
     
+    Objectives:
+    1. Select the specific Glycoconjugate Vaccine target (e.g., MenA, MenC, Pneumococcal).
+    2. Determine if we focus on single or multiple serotypes initially.
+    3. Define the validation metrics (e.g., IEDB recovery rate, structural stability scores).
+
     Questions:
-    1. Do we have all necessary data sources?
-    2. Which structural modeling tool should we prioritize for Glycans?
-    3. What is the initial validation target?
+    1. What is the clinical/scientific motivation for the chosen target?
+    2. What prior epitope data exists in IEDB for this target?
+    3. What structural data is available (PDB IDs)?
     """
 
     # 3. Run Planning Meeting
@@ -101,7 +106,7 @@ def main():
         output_dir = Path("data")
         output_dir.mkdir(exist_ok=True)
         
-        with open(output_dir / "meeting_transcript_001.txt", "w") as f:
+        with open(output_dir / "meeting_transcript_001.txt", "w", encoding="utf-8") as f:
             for entry in transcript:
                 role = entry.get('role', 'unknown')
                 name = entry.get('name', 'System')
@@ -116,4 +121,6 @@ def main():
         traceback.print_exc()
 
 if __name__ == "__main__":
+    if sys.stdout.encoding != 'utf-8':
+        sys.stdout.reconfigure(encoding='utf-8')
     main()

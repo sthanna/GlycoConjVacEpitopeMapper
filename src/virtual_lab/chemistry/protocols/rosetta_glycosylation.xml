@@ -1,0 +1,56 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="glycan_score" weights="beta_nov16_cart">
+            <Reweight scoretype="fa_intra_rep_xover4" weight="0.5"/>
+            <Reweight scoretype="fa_intra_atr_xover4" weight="0.5"/>
+            <!-- Upweight glycan-specific terms -->
+            <Reweight scoretype="sugar_bb" weight="2.0"/>
+            <Reweight scoretype="ch_bond" weight="1.0"/>
+        </ScoreFunction>
+    </SCOREFXNS>
+
+    <RESIDUE_SELECTORS>
+        <!-- Select the CRM197 Chain A -->
+        <Chain name="chainA" chains="A"/>
+        
+        <!-- Select Target Lysine (Example: K157) -->
+        <!-- In production, this index is dynamically updated by the python script -->
+        <Index name="target_site" resnums="157A"/>
+        
+        <!-- Select Glycan residues (Assuming they are added as a new chain or appended) -->
+        <ResidueName name="glycans" residue_name3="MAN,MNA"/>
+    </RESIDUE_SELECTORS>
+
+    <TASKOPERATIONS>
+        <InitializeFromCommandline name="init"/>
+        <RestrictToRepacking name="repack_only"/>
+    </TASKOPERATIONS>
+
+    <MOVERS>
+        <!-- 1. Glycosylate: Attach MenA repeat unit to the target Lysine -->
+        <!-- Note: "man_nac_phos" is hypothetical Rosetta residue type for MenA -->
+        <!-- For standard Rosetta, we use SimpleGlycosylate -->
+        <SimpleGlycosylate name="attach_mena" residue_selector="target_site" glycosylation_name="man_nac_phos" strip_existing_glycans="false"/>
+
+        <!-- 2. Minimize: Relax the glycan to avoid steric clashes -->
+        <MinMover name="min_glycan" scorefxn="glycan_score" chi="true" bb="true" cartesian="true">
+            <MoveMap name="mm_glycan">
+                <Chain number="1" chi="false" bb="false"/> <!-- Freeze Protein Backbone -->
+                <Jump number="1" setting="true"/>
+            </MoveMap>
+        </MinMover>
+        
+        <!-- 3. PackRotamers: Optimize sidechains near the conjugation site -->
+        <PackRotamersMover name="repack_interface" scorefxn="glycan_score"/>
+        
+    </MOVERS>
+
+    <PROTOCOLS>
+        <Add mover="attach_mena"/>
+        <Add mover="min_glycan"/>
+        <Add mover="repack_interface"/>
+    </PROTOCOLS>
+    
+    <OUTPUT scorefxn="glycan_score"/>
+
+</ROSETTASCRIPTS>
