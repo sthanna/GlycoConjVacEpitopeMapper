@@ -1,5 +1,6 @@
 # GlycoConjVacEpitopeMapper
 **Computational Strategy for Epitope Mapping of Glycoconjugate Vaccines Using Deep Learning & Virtual Lab Agents**
+**Project Lead:** Sandeep Thanna
 
 ---
 
@@ -133,5 +134,13 @@ npm run dev
 ---
 [AI Assisted Discovery Blueprint (PDF)](src/virtual_lab/docs/AI_Assisted_Discovery_Blueprint.pdf)
 
-## 8. License
+## 9. Collaboration & Future Work
+This project is actively maintained by **Sandeep Thanna**.
+I am open to collaboration on:
+- **Advanced Graph Neural Networks (SE3-Transformers)** extensions for glycan-protein interfaces.
+- **High-throughput Molecular Dynamics** optimizations for vaccine candidate screening.
+
+Please reach out to discuss integration or potential research partnerships.
+
+## 10. License
 MIT License

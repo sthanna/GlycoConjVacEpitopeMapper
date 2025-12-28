@@ -1,3 +1,8 @@
+# --------------------------------------------------------------------------------
+# Author: Sandeep Thanna
+# Copyright: 2025, Sandeep Thanna
+# Maintainer: Sandeep Thanna
+# --------------------------------------------------------------------------------
 import torch
 import numpy as np
 from typing import List, Dict

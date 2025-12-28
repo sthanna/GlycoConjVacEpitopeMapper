@@ -1,3 +1,8 @@
+# --------------------------------------------------------------------------------
+# Author: Sandeep Thanna
+# Copyright: 2025, Sandeep Thanna
+# Maintainer: Sandeep Thanna
+# --------------------------------------------------------------------------------
 
 import os
 import torch
@@ -17,6 +22,9 @@ from virtual_lab.epitope_mapping.features import FeatureExtractor
 class HybridEpitopeDataset(Dataset):
     """
     Hybrid Dataset combining Real Protein Embeddings (ESM-2) with Synthetic Glycan Data.
+    
+    Data pipeline architecture by S. Thanna - implements dynamic feature fusion 
+    to handle variable-length glycan chains without sequence padding.
     """
     def __init__(self, pdb_path, candidate_sites_csv, num_samples=50):
         self.pdb_path = pdb_path

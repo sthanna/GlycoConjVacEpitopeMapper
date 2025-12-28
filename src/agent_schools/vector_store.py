@@ -1,3 +1,8 @@
+# --------------------------------------------------------------------------------
+# Author: Sandeep Thanna
+# Copyright: 2025, Sandeep Thanna
+# Maintainer: Sandeep Thanna
+# --------------------------------------------------------------------------------
 from pathlib import Path
 from typing import List, Tuple
 # Imports assume standard LangChain and community packages are installed

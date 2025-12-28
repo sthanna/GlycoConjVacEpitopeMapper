@@ -1,3 +1,8 @@
+# --------------------------------------------------------------------------------
+# Author: Sandeep Thanna
+# Copyright: 2025, Sandeep Thanna
+# Maintainer: Sandeep Thanna
+# --------------------------------------------------------------------------------
 import torch
 from torch.utils.data import Dataset
 from typing import List, Tuple

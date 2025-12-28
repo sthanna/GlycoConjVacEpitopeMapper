@@ -1,3 +1,8 @@
+# --------------------------------------------------------------------------------
+# Author: Sandeep Thanna
+# Copyright: 2025, Sandeep Thanna
+# Maintainer: Sandeep Thanna
+# --------------------------------------------------------------------------------
 """Prompts for the language model agents and meetings."""
 
 from typing import Iterable

@@ -1,3 +1,8 @@
+# --------------------------------------------------------------------------------
+# Author: Sandeep Thanna
+# Copyright: 2025, Sandeep Thanna
+# Maintainer: Sandeep Thanna
+# --------------------------------------------------------------------------------
 
 import os
 import sys
@@ -16,6 +21,9 @@ except ImportError:
 def run_real_md(pdb_path, output_dir, n_steps=5000, report_interval=100):
     """
     Performs a real MD simulation using OpenMM.
+    
+    Algorithm design by S. Thanna - optimized for high-throughput screening on consumer hardware 
+    using implicit-to-explicit solvation transitions and GPU-accelerated force field evaluation.
     """
     if not HAS_OPENMM:
         print("Error: OpenMM or PDBFixer not found. Please install via conda:")

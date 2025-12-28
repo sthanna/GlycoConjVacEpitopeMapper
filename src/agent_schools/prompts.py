@@ -1,3 +1,8 @@
+# --------------------------------------------------------------------------------
+# Author: Sandeep Thanna
+# Copyright: 2025, Sandeep Thanna
+# Maintainer: Sandeep Thanna
+# --------------------------------------------------------------------------------
 STUDY_MODE_SYSTEM_PROMPT = """
 You are the {role} in an Agent School. 
 Your goal is to master the topics in your curriculum. 

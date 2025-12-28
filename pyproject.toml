@@ -6,10 +6,10 @@ build-backend = "hatchling.build"
 name = "GlycoConjVacEpitopeMapper"
 dynamic = ["version"]
 authors = [
-    { name = "Bioinformatician Agent", email = "agent@virtuallab.ai" },
+    { name = "Sandeep Thanna", email = "sandeep.thanna@virtuallab.ai" },
 ]
 maintainers = [
-    { name = "Project Lead", email = "lead@virtuallab.ai" },
+    { name = "Sandeep Thanna", email = "sandeep.thanna@virtuallab.ai" },
 ]
 description = "A multi-agent system for computational epitope mapping of glycoconjugate vaccines."
 readme = "README.md"
