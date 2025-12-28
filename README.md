@@ -85,7 +85,7 @@ To ensure all physical simulation (OpenMM) and machine learning (ESM-2) dependen
     ```bash
     python src/agent_schools/run_school.py
     ```
-![alt text](src/virtual_lab/docs/Vaccine%20Desing%20workflow_2%20meeting.png)
+![Virtual Lab Workflow](src/virtual_lab/docs/Vaccine_Design_workflow_meeting.png)
 
 ---
 
@@ -131,7 +131,7 @@ npm run dev
 - **Phosphate Shielding**: Correlation between glycan flexibility and model accessibility indices.
 
 ---
-[text](src/virtual_lab/docs/AI_Assisted_Discovery_Blueprint.pdf)
+[AI Assisted Discovery Blueprint (PDF)](src/virtual_lab/docs/AI_Assisted_Discovery_Blueprint.pdf)
 
 ## 8. License
 MIT License
