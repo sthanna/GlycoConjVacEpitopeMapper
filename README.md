@@ -35,10 +35,16 @@ Certified agents collaborate in a simulated research environment:
 ---
 
 ## 3. Methodology & Tiers
-The implementation translates the workflow into a multi-tiered validation approach:
+The implementation translates the workflow into a multi-tiered validation approach, prioritizing **AlphaFold 3** for structural modeling of protein-glycan complexes:
 - **Tier 1 (Biological Screening)**: Solvent exposure (SASA) and T-cell epitope (PPZ) masking.
-- **Tier 2 (Physical Simulation)**: MD-based RMSF analysis to quantify "Phosphate Cloud" shielding.
+- **Tier 2 (Physical Simulation)**: High-resolution modeling via **AlphaFold 3 Server** followed by **Real Molecular Dynamics (OpenMM)** using the **Amber14SB** (protein) and **GLYCAM-06j** (glycan) force fields. We perform explicitly solvated simulations to quantify "Phosphate Cloud" shielding via RMSF.
 - **Tier 3 (ML Modeling)**: SE(3)-Transformer/GNN using ESM-2 sequence embeddings and structural tensors.
+
+---
+
+## 4. Educational Resources
+We believe complex science should be accessible to everyone.
+- **[Student Reproduction Guide](reproduction_guide_for_students.md)**: A simplified, step-by-step guide for middle/high school students to build their own "Vaccine Design Computer."
 
 ---
 
@@ -53,33 +59,33 @@ The implementation translates the workflow into a multi-tiered validation approa
 
 ---
 
-## 5. Installation
+## 5. Installation & Environment Setup
+
+To ensure all physical simulation (OpenMM) and machine learning (ESM-2) dependencies are correctly linked, use the provided environment definition:
 
 1.  **Set up Conda Environment**:
     ```bash
+    # Create the virtual-lab environment
     conda env create -f environment.yml
-    conda activate epitope_mapping
+
+    # Activate the environment
+    conda activate virtual-lab
     ```
 
-2.  **Install Dependencies**:
+2.  **Verify Setup**:
     ```bash
-    pip install -e .
+    python -c "import openmm; import mdtraj; print('Real MD Support: OK')"
     ```
 
-3.  **Agent Schools Orchestration**:
-    Run a full academic cycle to train and certify your agents:
+3.  **Configuration**:
+    Update `src/virtual_lab/constants.py` with your **Gemini API Key**.
+
+4.  **Agent Schools Orchestration**:
+    Run the full academic cycle to train and certify your agents:
     ```bash
     python src/agent_schools/run_school.py
     ```
-
-4.  **Knowledge Indexing**:
-    Manually build/refresh the vector stores if new research is added:
-    ```bash
-    python run_indexing.py
-    ```
-
-5.  **Configuration**:
-    Update `src/virtual_lab/constants.py` with your **Gemini API Key**.
+![alt text](src/virtual_lab/docs/Vaccine%20Desing%20workflow_2%20meeting.png)
 
 ---
 
@@ -125,6 +131,7 @@ npm run dev
 - **Phosphate Shielding**: Correlation between glycan flexibility and model accessibility indices.
 
 ---
+[text](src/virtual_lab/docs/AI_Assisted_Discovery_Blueprint.pdf)
 
 ## 8. License
 MIT License

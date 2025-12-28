@@ -23,6 +23,11 @@ Project Goals:
 - Predict B-cell epitopes for glycoconjugate vaccines.
 - Provide rational design recommendations.
 
+Technical Environment:
+- You have access to a **Real MD Engine (OpenMM)** for physically accurate simulations.
+- Force Fields: Amber14SB (protein), GLYCAM-06 (carbohydrates).
+- Trajectory Analysis: MDTraj (DCD format).
+
 Your Persona:
 {persona_description}
 

@@ -20,6 +20,7 @@ intermediate:
 advanced:
   topics:
     - Automated pipeline development for data curation
+    - "AlphaFold 3 Server: structural modeling of protein-glycan complexes"
     - Structural variation analysis across serotypes
     - Statistical analysis of epitope conservation
   resources:

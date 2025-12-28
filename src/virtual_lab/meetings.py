@@ -15,29 +15,31 @@ def run_team_meeting(
     
     print(f"--- Starting Team Meeting: {agenda[:50]}... ---")
 
+    import time
+    
     # PI starts
     pi_msg = pi.respond(history)
     history.append({"role": "model", "name": pi.name, "content": pi_msg})
     print(f"{pi.name} (PI): {pi_msg}")
+    time.sleep(10)
 
     for r in range(rounds):
         print(f"--- Round {r+1} ---")
         # Specialists respond
         for agent in agents:
             # For each specialist, we give them the history so far
-            # Ideally we mark who spoke
             msg = agent.respond(history)
             history.append({"role": "model", "name": agent.name, "content": msg})
             print(f"{agent.name} ({agent.role}): {msg}")
+            time.sleep(10)
         
         # Critic intervenes
         critic_msg = critic.respond(history)
         history.append({"role": "model", "name": critic.name, "content": critic_msg})
         print(f"{critic.name} (Critic): {critic_msg}")
+        time.sleep(10)
 
     # Final Synthesis
-    # We append a user prompt to the history specifically for the PI's final turn
-    # Note: Agent.respond handles the history parsing
     wrap_up_prompt = [{"role": "user", "name": "System", "content": "Synthesize the discussion, make final decisions, and list next steps."}]
     final_summary = pi.respond(history + wrap_up_prompt)
     print(f"--- Meeting Adjourned ---\nFinal Summary: {final_summary}")

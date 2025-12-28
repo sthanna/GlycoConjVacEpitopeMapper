@@ -3,7 +3,13 @@ import os
 import torch
 import numpy as np
 from pathlib import Path
-import matplotlib.pyplot as plt
+
+# Try to import mdtraj for real MD handling
+try:
+    import mdtraj as md
+    HAS_MDTRAJ = True
+except ImportError:
+    HAS_MDTRAJ = False
 
 SIMULATION_DIR = "data/simulations"
 
@@ -29,7 +35,7 @@ def calculate_rmsf(trajectory):
     return rmsf_norm
 
 def main():
-    print("=== Extracting Dynamic Features from Mock MD Trajectories ===")
+    print("=== Extracting Dynamic Features from MD Trajectories ===")
     
     output_tensors = {}
     sim_dirs = [d for d in Path(SIMULATION_DIR).iterdir() if d.is_dir()]
@@ -37,16 +43,30 @@ def main():
     print(f"Found {len(sim_dirs)} simulations.")
     
     for sim_dir in sim_dirs:
-        traj_file = sim_dir / "trajectory.npy"
-        if not traj_file.exists():
+        # Check for Real (DCD) or Mock (NPY)
+        traj_dcd = sim_dir / "trajectory.dcd"
+        traj_npy = sim_dir / "trajectory.npy"
+        
+        traj = None
+        if traj_dcd.exists() and HAS_MDTRAJ:
+            print(f"Processing Real MD: {sim_dir.name}...")
+            # For real MD, we usually need a topology (fixed.pdb or similar)
+            topo_file = sim_dir / "fixed.pdb" # Assume output by OpenMM
+            if not topo_file.exists():
+                topo_file = "data/structures/pdb4ae1.ent" # Fallback to original
+            
+            t = md.load(str(traj_dcd), top=str(topo_file))
+            traj = t.xyz # Shape (Frames, Atoms, 3) in nm, converted to Angstrom if needed
+            traj = traj * 10.0 # nm to Angstrom
+            
+        elif traj_npy.exists():
+            print(f"Processing Mock MD: {sim_dir.name}...")
+            traj = np.load(traj_npy)
+            
+        if traj is None:
             continue
             
-        print(f"Processing {sim_dir.name}...")
-        
-        # Load Trajectory
-        traj = np.load(traj_file) # (500, 3000, 3)
-        
-        # Calculate RMSF (The "Phosphate Cloud" Metric)
+        # Calculate RMSF
         rmsf = calculate_rmsf(traj)
         
         # Convert to Tensor

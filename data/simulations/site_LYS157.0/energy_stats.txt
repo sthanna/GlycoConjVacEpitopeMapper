@@ -1,3 +1,3 @@
 Simulation Report for K157.0
 Status: Converged
-RMSD: 1.4216 A
+RMSD: 1.4219 A

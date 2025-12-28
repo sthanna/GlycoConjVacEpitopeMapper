@@ -1,26 +1,10 @@
+
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
 *.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
 
-# Virtual Environments
+# Environment
 .env
 .venv
 env/
@@ -29,29 +13,18 @@ ENV/
 env.bak/
 venv.bak/
 
-# Environment Variables
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.production
-
-# IDEs
-.idea/
+# IDES
 .vscode/
-*.swp
-*.swo
 
-# Jupyter
-.ipynb_checkpoints
+# Data & Output
+data/
+!data/example_outputs/
+!data/structures/pdb4ae1.ent
+!data/structures/pdb4ae1.pdb
+dashboard/node_modules/
+dashboard/build/
 
-# Large Data & Models
-data/structures/
-data/knowledge_base/vector_index/
-*.pt
-*.pth
-*.pkl
-
-# Logs
-*.log
-*.sqlite
+# Large Simulations
+*.dcd
+*.dcd.bak
+solvated.pdb

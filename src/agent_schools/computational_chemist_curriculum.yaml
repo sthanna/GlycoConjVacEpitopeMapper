@@ -4,7 +4,7 @@ foundational:
     - Protein structure basics (secondary/tertiary structure)
     - Glycan chemistry and stereochemistry
     - Basics of Molecular Dynamics (MD)
-    - AlphaFold glycoprotein structure prediction # Strategy Doc Query
+    - "AlphaFold 3 Server: structural modeling of protein-glycan complexes"
     - GLYCAM carbohydrate MD                      # Strategy Doc Query
     - Rosetta antibody-antigen interface scoring  # Strategy Doc Query
   resources:
@@ -22,6 +22,7 @@ intermediate:
       link: ""
 advanced:
   topics:
+    - "AlphaFold 3 Server: capabilities and limitations for glycoconjugates"
     - Docking algorithms for large complexes
     - Free energy perturbation methods
     - Analyzing conformational ensembles
