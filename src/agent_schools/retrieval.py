@@ -4,6 +4,7 @@
 # Maintainer: Sandeep Thanna
 # --------------------------------------------------------------------------------
 import os
+import re
 import requests
 from typing import List, Dict
 from pathlib import Path
@@ -92,8 +93,10 @@ class PaperRetriever:
             print(f"Found {len(pmids)} results.")
             recs = self.fetch_abstracts(pmids)
             # self.download_pdfs(recs)
-            # Save records to disk
-            out_file = self.out_dir / f"{q.replace(' ', '_')}_abstracts.txt"
+            # Sanitize filename: replace any non-alphanumeric characters (except underscores) with underscores
+            safe_name = re.sub(r'[^\w\s-]', '', q)  # Remove special chars
+            safe_name = re.sub(r'[\s-]+', '_', safe_name)  # Replace spaces/hyphens with underscores
+            out_file = self.out_dir / f"{safe_name}_abstracts.txt"
             with open(out_file, 'w', encoding='utf-8') as f:
                 for r in recs:
                     f.write(str(r) + "\n\n")

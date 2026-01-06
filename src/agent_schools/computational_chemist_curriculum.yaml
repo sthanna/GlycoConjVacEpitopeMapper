@@ -1,36 +1,129 @@
 role: Computational Chemist
+
 foundational:
+
   topics:
+
     - Protein structure basics (secondary/tertiary structure)
+
     - Glycan chemistry and stereochemistry
+
     - Basics of Molecular Dynamics (MD)
+
     - "AlphaFold 3 Server: structural modeling of protein-glycan complexes"
-    - GLYCAM carbohydrate MD                      # Strategy Doc Query
-    - Rosetta antibody-antigen interface scoring  # Strategy Doc Query
+
+    - GLYCAM carbohydrate MD # Strategy Doc Query
+
+    - Rosetta antibody-antigen interface scoring # Strategy Doc Query
+
+    - Force fields (bonded vs. non‑bonded terms; electrostatics and Lennard‑Jones)
+
+    - Solvation models and periodic boundary conditions
+
   resources:
+
     - type: guidebook
       title: "GROMACS User Guide"
       link: "https://manual.gromacs.org/"
-intermediate:
-  topics:
-    - Homology modeling and AlphaFold
-    - Glycosylation modeling (GLYCAM force fields)
-    - Solvent accessibility and surface calculations
-  resources:
+
+    - type: tutorial
+      title: "Introduction to molecular dynamics – official GROMACS tutorials"
+      link: "https://tutorials.gromacs.org/"
+
     - type: article
-      title: "Modeling glycoproteins with AlphaFold"
-      link: ""
-advanced:
+      title: "GLYCAM06: a generalizable biomolecular force field for carbohydrates"
+      link: "https://pubmed.ncbi.nlm.nih.gov/16466204/"
+
+    - type: documentation
+      title: "GLYCAM‑Web help and force‑field documentation"
+      link: "https://glycam.org/docs/help/"
+
+    - type: course
+      title: "Galaxy training – running MD simulations with GROMACS"
+      link: "https://training.galaxyproject.org/training-material/topics/computational-chemistry/tutorials/md-simulation-gromacs/tutorial.html"
+
+intermediate:
+
   topics:
-    - "AlphaFold 3 Server: capabilities and limitations for glycoconjugates"
-    - Docking algorithms for large complexes
-    - Free energy perturbation methods
-    - Analyzing conformational ensembles
+
+    - Homology modeling and AlphaFold
+
+    - Glycosylation modeling (GLYCAM force fields)
+
+    - Solvent accessibility and surface calculations
+
+    - System setup for glycoprotein MD (solvation, ion placement, equilibration)
+
+    - Trajectory analysis (RMSD, RMSF, radius of gyration, SASA, hydrogen bonds)
+
   resources:
+
+    - type: article
+      title: "Modeling glycoproteins with AlphaFold and GLYCAM"
+      link: "https://onlinelibrary.wiley.com/doi/10.1002/prot.26217"
+
+    - type: server
+      title: "GLYCAM‑Web: building and simulating glycans and glycoproteins"
+      link: "https://glycam.org/"
+
+    - type: article
+      title: "Introductory tutorials for simulating protein dynamics with GROMACS (J. Phys. Chem. B 2024)"
+      link: "https://pubs.acs.org/doi/10.1021/acs.jpcb.4c04901"
+
+    - type: tutorial
+      title: "GROMACS analysis tools (gmx rms, gmx rmsf, gmx gyrate, gmx sasa) – official documentation"
+      link: "https://manual.gromacs.org/current/onlinehelp/gmx.html"
+
+advanced:
+
+  topics:
+
+    - "AlphaFold 3 Server: capabilities and limitations for glycoconjugates"
+
+    - Docking algorithms for large complexes
+
+    - HADDOCK protein-glycan docking for epitope analysis
+
+    - GROMACS and GLYCAM force fields for glycoproteins
+
+    - Free energy perturbation methods
+
+    - Analyzing conformational ensembles
+
+    - Binding free energy calculations (MM/PBSA and MM/GBSA)
+
+    - GPU‑accelerated MD with OpenMM and comparison to GROMACS
+
+  resources:
+
     - type: article
       title: "Advanced sampling in MD"
-      link: ""
+      link: "https://www.nature.com/articles/nmeth.2610"
+
+    - type: article
+      title: "In‑silico core proteome analysis for multi‑epitope vaccine design (PLOS ONE – MD and MMPBSA workflow)"
+      link: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0337692"
+
+    - type: documentation
+      title: "OpenMM user guide and Python API for GPU‑accelerated MD"
+      link: "http://docs.openmm.org/latest/userguide/"
+
+    - type: article
+      title: "Maximizing OpenMM throughput with NVIDIA Multi‑Process Service"
+      link: "https://developer.nvidia.com/blog/maximizing-openmm-molecular-dynamics-throughput-with-nvidia-mps/"
+
+    - type: server
+      title: "ClusPro and CASTp – tools for protein–protein docking and binding pocket identification"
+      link: "https://cluspro.bu.edu/"
+
 assessment_objectives:
+
   - Generate valid 3D structures of glycoconjugates
+
   - Assess stereochemical quality of glycan models
+
   - Calculate solvent-accessible surface area (SASA) for specific residues
+
+  - Set up and run a 50–100 ns MD simulation of a glycoprotein with GLYCAM parameters
+
+  - Compute and interpret basic binding free energies for an epitope–receptor complex

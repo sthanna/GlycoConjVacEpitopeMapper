@@ -5,14 +5,15 @@
 # --------------------------------------------------------------------------------
 from typing import List, Dict, Any, Optional
 from pathlib import Path
-import google.generativeai as genai
+from google import genai
 from .constants import GEMINI_API_KEY, DEFAULT_MODEL
 
-# Configure Gemini
+# Initialize Gemini Client (new unified SDK)
 try:
-    genai.configure(api_key=GEMINI_API_KEY)
+    _genai_client = genai.Client(api_key=GEMINI_API_KEY)
 except Exception as e:
-    print(f"Warning: Failed to configure Gemini API: {e}")
+    print(f"Warning: Failed to initialize Gemini Client: {e}")
+    _genai_client = None
 
 class Agent:
     def __init__(
@@ -44,9 +45,13 @@ class Agent:
         self.tools = tools if tools else []
         self.history: List[Dict[str, str]] = [{"role": "user", "parts": [self.system_prompt]}]
         
-        # Initialize Gemini Model
-        self.generative_model = genai.GenerativeModel(self.model_name)
-        self.chat = self.generative_model.start_chat(history=[])
+        # Initialize Gemini Chat using new unified SDK
+        self.chat = None
+        if _genai_client:
+            try:
+                self.chat = _genai_client.chats.create(model=self.model_name)
+            except Exception as e:
+                print(f"Warning: Failed to create chat for {self.name}: {e}")
         self._processed_history_len = 0
         
         self.extras = kwargs
@@ -91,38 +96,32 @@ class Agent:
         """
         Synchronize the internal chat session with the external conversation history.
         We skip the last message as it's the prompt we're about to respond to.
+        
+        Note: The new google.genai SDK doesn't expose chat.history for direct manipulation.
+        We rely on _processed_history_len to track what's been sent to the model.
         """
         # If external history is shorter than what we've processed, something reset (unlikely)
         if len(conversation_history) < self._processed_history_len:
             self.reset_history()
             
         # Process new messages (excluding the current prompt at the end)
+        # In the new SDK, we can't directly manipulate history, so we'll
+        # send catch-up context in the next actual message if needed
         new_messages = conversation_history[self._processed_history_len : -1]
         
-        for entry in new_messages:
-            role = entry.get('role', 'user')
-            name = entry.get('name', 'Unknown')
-            content = entry.get('content') or entry.get('message') or ""
+        if new_messages:
+            # Build a context summary of missed messages
+            context_parts = []
+            for entry in new_messages:
+                role = entry.get('role', 'user')
+                name = entry.get('name', 'Unknown')
+                content = entry.get('content') or entry.get('message') or ""
+                context_parts.append(f"[{role}] {name}: {content}")
             
-            # Formulate as a context message
-            # If it's our own message, we should ideally inform the chat session it was "us"
-            # But in multi-agent, the ChatSession thinks "user" is everyone else.
-            
-            msg_text = f"[{role}] {name}: {content}"
-            
-            # Prepend system instruction on the very first message
-            if not self.chat.history:
-                msg_text = f"System Instruction: {self.system_prompt}\n\n" + msg_text
-            
-            # Send message without generating a response (catchup)
-            # Actually, standard ChatSession doesn't have a simple "append" without calling.
-            # We can use chat.history.append({'role': 'user', 'parts': [msg_text]})
-            # and when it's our own turn, append as 'model'.
-            
-            if name == self.name:
-                self.chat.history.append({'role': 'model', 'parts': [content]})
-            else:
-                self.chat.history.append({'role': 'user', 'parts': [msg_text]})
+            # Store context to prepend to next message
+            if not hasattr(self, '_pending_context'):
+                self._pending_context = ""
+            self._pending_context += "\n".join(context_parts) + "\n"
         
         self._processed_history_len = len(conversation_history) - 1
 
@@ -149,12 +148,20 @@ class Agent:
 
         input_text = f"[{role}] {sender}: {last_msg}\n\n{kb_context}[{self.role}] (You):"
         
-        # If history is still empty (this is the first message), prepend system instruction
-        if not self.chat.history:
-             input_text = f"System Instruction: {self.system_prompt}\n\n" + input_text
+        # Include any pending context from history synchronization
+        if hasattr(self, '_pending_context') and self._pending_context:
+            input_text = f"Previous conversation:\n{self._pending_context}\n\n" + input_text
+            self._pending_context = ""
+        
+        # If this is the first message, prepend system instruction
+        if not hasattr(self, '_first_message_sent') or not self._first_message_sent:
+            input_text = f"System Instruction: {self.system_prompt}\n\n" + input_text
+            self._first_message_sent = True
 
         try:
-            response = self.chat.send_message(input_text)
+            if not self.chat:
+                return f"[{self.role}] Error: Chat not initialized"
+            response = self.chat.send_message(message=input_text)
             response_text = response.text.strip()
             # Update processed len (since we just added the prompt and our response)
             self._processed_history_len = len(conversation_history) 
@@ -163,5 +170,11 @@ class Agent:
             return f"[{self.role}] Error generating response: {e}"
 
     def reset_history(self):
-        self.chat = self.generative_model.start_chat(history=[])
+        if _genai_client:
+            try:
+                self.chat = _genai_client.chats.create(model=self.model_name)
+            except Exception as e:
+                print(f"Warning: Failed to reset chat for {self.name}: {e}")
         self._processed_history_len = 0
+        self._first_message_sent = False
+        self._pending_context = ""

@@ -122,7 +122,8 @@ def run_pubmed_search(
         if title is None:
             continue
 
-        texts.append(f"PMCID = {pmcid}\n\nTitle = {title}\n\n{'\n\n'.join(content)}")
+        joiner = "\n\n"
+        texts.append(f"PMCID = {pmcid}\n\nTitle = {title}\n\n{joiner.join(content)}")
         titles.append(title)
         pmcids.append(pmcid)
 

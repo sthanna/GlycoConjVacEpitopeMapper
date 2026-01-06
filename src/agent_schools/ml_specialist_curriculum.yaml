@@ -1,34 +1,139 @@
 role: ML Specialist
+
 foundational:
+
   topics:
+
     - Basics of Deep Learning (MLPs, CNNs, RNNs)
+
     - Protein language models (ESM-2, ProtBERT)
+
     - Model evaluation metrics (Precision, Recall, ROC-AUC)
-    - protein language model epitope prediction        # Strategy Doc Query
-    - geometric deep learning conformational epitope   # Strategy Doc Query
+
+    - protein language model epitope prediction # Strategy Doc Query
+
+    - geometric deep learning conformational epitope # Strategy Doc Query
+
   resources:
+
     - type: library
       title: "HuggingFace Transformers Documentation"
       link: "https://huggingface.co/docs"
+
+    - type: textbook
+      title: "Deep Learning (Goodfellow, Bengio, Courville) – core chapters on feed-forward networks, regularization, optimization"
+      link: "https://www.deeplearningbook.org/"
+
+    - type: course
+      title: "FastAI Practical Deep Learning for Coders (v4+) – end-to-end deep learning workflows"
+      link: "https://course.fast.ai"
+
+    - type: tutorial
+      title: "PyTorch Official Tutorials – building and training neural networks"
+      link: "https://pytorch.org/tutorials/"
+
+    - type: article
+      title: "AI‑driven epitope prediction: systematic review and practical guide for vaccine development (Villanueva‑Flores et al., npj Vaccines 2025)"
+      link: "https://www.nature.com/articles/s41541-025-01258-y"
+
+    - type: article
+      title: "MHCnuggets: LSTM‑based prediction of peptide–MHC binding"
+      link: "https://pubmed.ncbi.nlm.nih.gov/30768256/"
+
 intermediate:
+
   topics:
+
     - Graph Neural Networks (GNNs) for molecular data
+
     - Feature engineering for proteins and glycans
+
     - Handling class imbalance in biological datasets
+
+    - RNNs and LSTMs for sequence‑based epitope prediction
+
+    - CNN architectures for peptide and epitope motif detection
+
+    - Attention mechanisms and sequence‑to‑sequence modeling
+
   resources:
+
     - type: article
       title: "Geometric Deep Learning for Proteins"
-      link: ""
+      link: "https://www.nature.com/articles/s42256-021-00410-y"
+
+    - type: library
+      title: "PyTorch Geometric Documentation – message passing neural networks for molecular graphs"
+      link: "https://pytorch-geometric.readthedocs.io/"
+
+    - type: article
+      title: "GraphBepi: integrating BiLSTM and GNNs for structure‑aware B‑cell epitope prediction"
+      link: "https://academic.oup.com/bib/article/24/1/bbac577/6986760"
+
+    - type: article
+      title: "DeepLBCEPred and NetBCE – CNN/BiLSTM models for linear B‑cell epitope prediction"
+      link: "https://pubmed.ncbi.nlm.nih.gov/34718706/"
+
+    - type: tutorial
+      title: "GNNs on the PROTEINS dataset with PyTorch Geometric (video walkthrough)"
+      link: "https://www.youtube.com/watch?v=IRM1xvhH8zM"
+
+    - type: article
+      title: "MUNIS: deep learning framework for T‑cell epitope prediction from large HLA–peptide datasets"
+      link: "https://pubmed.ncbi.nlm.nih.gov/39593547/"
+
 advanced:
+
   topics:
+
     - 3D-equivariant neural networks
+
     - Multimodal learning (Sequence + Structure)
+
     - Interpretability methods (Attention maps, Integrated Gradients)
+
+    - Large protein language models (ESM‑2, ESM‑IF1) and transfer learning
+
+    - Graph attention networks and geometric vector perceptrons for protein surfaces
+
+    - Positive‑unlabeled learning and ensemble methods for epitope discovery
+
+    - Benchmarking against state‑of‑the‑art tools (NetMHC, GraphBepi, DiscoTope‑3.0)
+
   resources:
+
     - type: article
       title: "Deep learning for epitope prediction"
-      link: ""
+      link: "https://link.springer.com/article/10.1007/s10916-022-01909-4"
+
+    - type: article
+      title: "DiscoTope‑3.0: improved B‑cell epitope prediction using inverse folding latent representations (Høie et al., Front. Immunol. 2024)"
+      link: "https://www.frontiersin.org/articles/10.3389/fimmu.2024.1322712/full"
+
+    - type: model
+      title: "ESM‑2 and ESM‑IF1 protein language models – GitHub repository and documentation"
+      link: "https://github.com/facebookresearch/esm"
+
+    - type: article
+      title: "VenusVaccine: dual‑attention deep learning system for immunogenic antigen prediction"
+      link: "https://www.science.org/doi/10.1126/sciadv.adj4888"
+
+    - type: article
+      title: "Graph neural network frameworks for protein structure (e.g., DeepRank‑GNN, GGN‑GO)"
+      link: "https://academic.oup.com/bioinformatics/article/39/1/btac759/6993234"
+
+    - type: tutorial
+      title: "SHAP and Integrated Gradients for interpreting biological deep learning models"
+      link: "https://captum.ai/tutorials/"
+
 assessment_objectives:
+
   - Design a GNN architecture for protein surface analysis
+
   - Implement a training pipeline with proper validation splits
+
   - Interpret model predictions to identify critical residues
+
+  - Fine‑tune a protein language model (e.g., ESM‑2) for epitope prediction
+
+  - Benchmark new models against established epitope predictors and report AUC/PR‑AUC/MCC

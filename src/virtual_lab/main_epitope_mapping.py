@@ -52,10 +52,10 @@ def main():
     names = ["Alice", "Bob", "Charlie", "Diana"]
 
     ROLE_TO_KB = {
-        "Glyco-Immunologist": "data/knowledge_base/glyco_immunologist/vector_index",
-        "Computational Chemist": "data/knowledge_base/computational_chemist/vector_index",
-        "ML Specialist": "data/knowledge_base/ml_specialist/vector_index",
-        "Bioinformatician": "data/knowledge_base/bioinformatician/vector_index"
+        "Glyco-Immunologist": "data/knowledge_base/indexes/glyco_immunologist",
+        "Computational Chemist": "data/knowledge_base/indexes/computational_chemist",
+        "ML Specialist": "data/knowledge_base/indexes/ml_specialist",
+        "Bioinformatician": "data/knowledge_base/indexes/bioinformatician"
     }
 
     for name, role in zip(names, roles):

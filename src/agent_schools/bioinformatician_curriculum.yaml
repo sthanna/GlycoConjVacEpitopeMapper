@@ -1,33 +1,129 @@
 role: Bioinformatician
+
 foundational:
+
   topics:
+
     - Biological databases (Uniprot, PDB, GenBank)
+
     - Sequence alignment protocols (BLAST, Clustal)
+
     - IEDB Epitope Database structure and usage
+
+    - Basics of PDB file format and structure annotation
+
+    - Fundamentals of epitope types (linear vs. conformational; B‑cell vs. T‑cell)
+
   resources:
+
     - type: database
       title: "IEDB Analysis Resource"
       link: "http://tools.iedb.org/"
+
+    - type: database
+      title: "UniProtKB: curated protein sequence and functional annotation"
+      link: "https://www.uniprot.org/"
+
+    - type: database
+      title: "RCSB PDB: Protein Data Bank for 3D structures"
+      link: "https://www.rcsb.org/"
+
+    - type: tutorial
+      title: "NCBI BLAST and multiple sequence alignment (Clustal Omega/MUSCLE) tutorials"
+      link: "https://www.ncbi.nlm.nih.gov/books/NBK569856/"
+
+    - type: tutorial
+      title: "IEDB database and analysis tools – official user guides"
+      link: "https://www.iedb.org/help_start.php"
+
 intermediate:
+
   topics:
+
     - Mapping epitopes to 3D structures
+
     - Glycan nomenclature and formatting (IUPAC, LINUCS)
+
+    - DiscoTope-3.0 B-cell epitope prediction
+
+    - ElliPro epitope prediction
+
     - Python for Bioinformatics (BioPython, Pandas)
+
+    - Integrating AlphaFold structures into epitope workflows
+
   resources:
+
     - type: tutorial
       title: "Biopython Tutorial"
-      link: ""
+      link: "https://biopython.org/DIST/docs/tutorial/Tutorial.html"
+
+    - type: tutorial
+      title: "Pandas documentation – data cleaning, merging, and aggregation for biological datasets"
+      link: "https://pandas.pydata.org/docs/"
+
+    - type: article
+      title: "UniCarbKB: building a knowledge platform for glycoproteomics (Campbell et al.)"
+      link: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3964942/"
+
+    - type: server
+      title: "DiscoTope‑3.0 web server and documentation"
+      link: "https://services.healthtech.dtu.dk/service.php?DiscoTope-3.0"
+
+    - type: server
+      title: "IEDB ElliPro conformational epitope prediction tool"
+      link: "http://tools.iedb.org/ellipro/"
+
+    - type: guide
+      title: "Carbohydrate nomenclature (IUPAC and LINUCS) – basic reference guide"
+      link: "https://www.ncbi.nlm.nih.gov/glycans/docs/glycan_nomenclature/"
+
 advanced:
+
   topics:
+
     - Automated pipeline development for data curation
+
     - "AlphaFold 3 Server: structural modeling of protein-glycan complexes"
+
     - Structural variation analysis across serotypes
+
     - Statistical analysis of epitope conservation
+
+    - Large‑scale batch prediction with DiscoTope‑3.0 and ElliPro
+
+    - Integration of protein and glycan databases (UniProt, PDB, UniCarbKB)
+
   resources:
+
     - type: article
       title: "Large-scale analysis of immune targets"
-      link: ""
+      link: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6187972/"
+
+    - type: course
+      title: "AlphaFold practical guide and AlphaFold server usage (EMBL‑EBI online course)"
+      link: "https://www.ebi.ac.uk/training/online/courses/alphafold/"
+
+    - type: workflow
+      title: "Snakemake or Nextflow documentation for building reproducible bioinformatics pipelines"
+      link: "https://snakemake.readthedocs.io/en/stable/"
+
+    - type: tutorial
+      title: "Galaxy Project training – epitope mapping and structural annotation workflows"
+      link: "https://training.galaxyproject.org/"
+
+    - type: article
+      title: "Bacterial vaccine antigen discovery using reverse vaccinology 2.0 (Rappuoli et al.)"
+      link: "https://www.frontiersin.org/articles/10.3389/fimmu.2018.02315/full"
+
 assessment_objectives:
+
   - Retrieve and clean antigen data from IEDB
+
   - Map linear epitopes to 3D PDB structures
+
   - Generate statistical reports on epitope conservation
+
+  - Build a simple automated pipeline that runs DiscoTope‑3.0 and ElliPro on AlphaFold structures
+
+  - Integrate glycan annotations from UniCarbKB into epitope datasets

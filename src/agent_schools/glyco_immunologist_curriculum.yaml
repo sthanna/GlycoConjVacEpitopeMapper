@@ -1,36 +1,115 @@
 role: Glyco-Immunologist
+
 foundational:
+
   topics:
+
     - B-cell epitope recognition
+
     - T-cell dependent responses to glycoconjugates
+
     - Basics of glycobiology
-    - glycoconjugate vaccine B-cell epitope  # Strategy Doc Query
-    - glycan immunogenicity carrier protein  # Strategy Doc Query
-    - conjugate vaccine epitope mapping      # Strategy Doc Query
+
+    - glycoconjugate vaccine B-cell epitope # Strategy Doc Query
+
+    - glycan immunogenicity carrier protein # Strategy Doc Query
+
+    - conjugate vaccine epitope mapping # Strategy Doc Query
+
+    - HLA/MHC polymorphism and peptide presentation
+
+    - Differences between glycan and peptide epitopes
+
   resources:
+
     - type: review
       title: Essentials of Glycobiology (selected chapters)
       link: https://www.ncbi.nlm.nih.gov/books/NBK453024/
+
     - type: review
       title: "Carbohydrate-based vaccines"
-      link: ""
+      link: "https://www.sciencedirect.com/science/article/pii/S0958166914000942"
+
+    - type: review
+      title: "Reverse vaccinology 2.0 and bacterial vaccine antigen discovery"
+      link: "https://www.frontiersin.org/articles/10.3389/fimmu.2018.02315/full"
+
+    - type: database
+      title: "Immune Epitope Database (IEDB) – overview pages and user guide"
+      link: "https://www.iedb.org/"
+
 intermediate:
+
   topics:
+
     - Epitope mapping techniques (ELISA scanning, phage display)
+
     - Mechanisms of glycan shielding and exposure
+
+    - Neisseria meningitidis epitope conservation
+
+    - HLA class I/II restricted T‑cell epitope prediction (NetMHCpan, NetMHCIIpan)
+
+    - Use of IEDB analysis tools for B‑cell and T‑cell epitope prediction
+
   resources:
+
     - type: article
       title: "Glycoconjugate vaccines and B-cell responses"
-      link: ""
+      link: "https://pubmed.ncbi.nlm.nih.gov/29559301/"
+
+    - type: tutorial
+      title: "IEDB database and analysis resource – official tutorials for epitope prediction"
+      link: "http://tools.iedb.org/main/tutorial/"
+
+    - type: article
+      title: "NetMHCpan and NetMHCIIpan: pan‑specific MHC binding prediction"
+      link: "https://www.nature.com/articles/nbt1140"
+
+    - type: guideline
+      title: "CDC and WHO technical documents on meningococcal and other glycoconjugate vaccines"
+      link: "https://www.cdc.gov/vaccines/vpd/mening/hcp/index.html"
+
 advanced:
+
   topics:
+
     - Computational epitope prediction for glycoconjugates
+
     - Integrating structural and immunological data
+
+    - Epitope conservation analysis across bacterial strains and serotypes
+
+    - Prioritizing multi‑epitope constructs for broad coverage
+
+    - Designing immunological validation experiments for predicted glycotopes
+
   resources:
+
     - type: article
       title: "State-of-the-art in computational vaccine design"
-      link: ""
+      link: "https://www.nature.com/articles/s41573-021-00292-7"
+
+    - type: article
+      title: "AI‑driven epitope prediction: systematic review and practical guide for vaccine development (npj Vaccines 2025)"
+      link: "https://www.nature.com/articles/s41541-025-01258-y"
+
+    - type: article
+      title: "DiscoTope‑3.0 and BepiPred‑3.0 – applications to conformational and linear B‑cell epitopes"
+      link: "https://www.frontiersin.org/articles/10.3389/fimmu.2024.1322712/full"
+
+    - type: article
+      title: "Development of meningococcal polysaccharide conjugate vaccines and MenB reverse vaccinology"
+      link: "https://www.frontiersin.org/articles/10.3389/fimmu.2019.00751/full"
+
 assessment_objectives:
+
   - Explain B-cell epitope formation for glycoconjugate vaccines
+
   - Distinguish glycan vs. peptide epitopes
+
   - Design immunological validation experiments
+
+  - Use IEDB and NetMHCpan/NetMHCIIpan to prioritize epitopes for a glycoconjugate antigen
+
+  - Assess epitope conservation and predicted population coverage for a candidate vaccine design
