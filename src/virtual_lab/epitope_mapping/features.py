@@ -72,8 +72,52 @@ class FeatureExtractor:
         # Return the concatenated features if multiple, or just the first
         return torch.cat(features_list, dim=0) if features_list else torch.empty(0, self.embed_dim)
 
-    def compute_glycan_features(self, pdb_file: str):
+    def compute_glycan_features(self, pdb_file: str) -> Dict:
         """
-        Compute glycan-specific features like density or shielding.
+        Compute glycan-specific features like density or shielding from a PDB file.
+
+        Returns a dict with per-residue SASA values and glycan neighbor counts
+        within a contact radius, which serve as proxies for glycan shielding.
         """
-        pass
+        from Bio import PDB
+        from Bio.PDB import SASA
+
+        parser = PDB.PDBParser(QUIET=True)
+        try:
+            structure = parser.get_structure("protein", pdb_file)
+        except Exception as e:
+            print(f"Error parsing PDB {pdb_file}: {e}")
+            return {"sasa": np.array([]), "glycan_neighbor_counts": np.array([])}
+
+        model = structure[0]
+
+        # Compute residue-level SASA
+        sr = SASA.ShrakeRupley()
+        sr.compute(model, level="R")
+
+        residues = [r for r in model.get_residues() if r.id[0] == " "]
+        sasa_values = np.array([r.sasa for r in residues], dtype=np.float32)
+
+        # Count sugar/glycan residues (HETATM with common glycan names) near each residue
+        glycan_resnames = {"NAG", "MAN", "BMA", "FUC", "GAL", "SIA", "GLC"}
+        glycan_atoms = [
+            atom
+            for r in model.get_residues()
+            if r.resname.strip() in glycan_resnames
+            for atom in r.get_atoms()
+        ]
+
+        contact_radius = 10.0  # Angstroms
+        neighbor_counts = np.zeros(len(residues), dtype=np.int32)
+
+        if glycan_atoms:
+            glycan_coords = np.array([a.get_coord() for a in glycan_atoms])
+            for i, res in enumerate(residues):
+                centroid = np.mean([a.get_coord() for a in res.get_atoms()], axis=0)
+                dists = np.linalg.norm(glycan_coords - centroid, axis=1)
+                neighbor_counts[i] = int(np.sum(dists < contact_radius))
+
+        return {
+            "sasa": sasa_values,
+            "glycan_neighbor_counts": neighbor_counts,
+        }

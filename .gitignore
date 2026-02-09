@@ -1,10 +1,12 @@
-
 # Python
 __pycache__/
 *.py[cod]
 *.so
+*.egg-info/
+dist/
+build/
 
-# Environment
+# Environment & Secrets
 .env
 .venv
 env/
@@ -13,18 +15,30 @@ ENV/
 env.bak/
 venv.bak/
 
-# IDES
+# IDEs
 .vscode/
+.idea/
+*.swp
+*.swo
 
 # Data & Output
 data/
 !data/example_outputs/
 !data/structures/pdb4ae1.ent
 !data/structures/pdb4ae1.pdb
-dashboard/node_modules/
+
+# Node
+node_modules/
 dashboard/build/
 
 # Large Simulations
 *.dcd
 *.dcd.bak
 solvated.pdb
+
+# Generated test output
+*_test_transcript.txt
+
+# OS
+.DS_Store
+Thumbs.db

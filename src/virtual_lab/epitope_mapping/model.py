@@ -6,7 +6,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Optional, Tuple
+from typing import Optional
 from torch.utils.data import DataLoader
 
 class GraphConvolution(nn.Module):
@@ -119,7 +119,33 @@ def train_model(
             
         avg_loss = total_loss / len(train_loader)
         history["train_loss"].append(avg_loss)
-        
-        print(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_loss:.4f}")
-        
+
+        # Validation
+        if val_loader is not None:
+            model.eval()
+            val_loss = 0.0
+            correct = 0
+            total = 0
+            with torch.no_grad():
+                for batch in val_loader:
+                    if len(batch) == 3:
+                        x, adj, y = batch
+                        x, adj, y = x.to(device), adj.to(device), y.to(device)
+                        probs = model(x, adj).squeeze()
+                    else:
+                        x, y = batch
+                        x, y = x.to(device), y.to(device)
+                        probs = model(x).squeeze()
+                    val_loss += criterion(probs, y.float().squeeze()).item()
+                    preds = (probs > 0.5).float()
+                    correct += (preds == y.float().squeeze()).sum().item()
+                    total += y.numel()
+            avg_val_loss = val_loss / len(val_loader)
+            val_acc = correct / total if total > 0 else 0.0
+            history["val_loss"].append(avg_val_loss)
+            history["val_acc"].append(val_acc)
+            print(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_loss:.4f} | Val Loss: {avg_val_loss:.4f} | Val Acc: {val_acc:.4f}")
+        else:
+            print(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_loss:.4f}")
+
     return history

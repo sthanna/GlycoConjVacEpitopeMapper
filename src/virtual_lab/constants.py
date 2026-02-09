@@ -5,8 +5,10 @@
 # --------------------------------------------------------------------------------
 """Holds constants."""
 
+import os
+
 DEFAULT_MODEL = "gemini-3-flash-preview"
-GEMINI_API_KEY = "AIzaSyA2h0eCqc2yNBM6wJt8oTdAnvxwrSrgJcc"
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
 # Prices Placeholders (Gemini pricing varies, leaving empty or generic for now)
 MODEL_TO_INPUT_PRICE_PER_TOKEN = {}
