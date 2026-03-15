@@ -80,7 +80,11 @@ To ensure all physical simulation (OpenMM) and machine learning (ESM-2) dependen
     ```
 
 3.  **Configuration**:
-    Update `src/virtual_lab/constants.py` with your **Gemini API Key**.
+    Copy `.env.example` to `.env` and fill in your API keys:
+    ```bash
+    cp .env.example .env
+    # Edit .env with your actual API keys
+    ```
 
 4.  **Agent Schools Orchestration**:
     Run the full academic cycle to train and certify your agents:
