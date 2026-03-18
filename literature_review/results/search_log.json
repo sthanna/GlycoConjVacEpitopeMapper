@@ -1,0 +1,21 @@
+{
+  "query": "(\"glycoconjugate vaccine\" OR \"glycoconjugate\") AND (\"epitope\" OR \"B-cell epitope\" OR \"T-cell epitope\" OR \"epitope mapping\" OR \"protective epitope\") AND (\"vaccine\" OR \"immunogen\" OR \"immunogenicity\")",
+  "date": "2026-03-18T21:45:26.175811Z",
+  "databases": [
+    "pubmed",
+    "openalex",
+    "semantic_scholar",
+    "biorxiv"
+  ],
+  "counts": {
+    "pubmed": 75,
+    "openalex": 500,
+    "semantic_scholar": 0,
+    "biorxiv": 0
+  },
+  "total_raw": 575,
+  "after_dedup": 567,
+  "duplicates_removed": 8,
+  "screened_excluded": 328,
+  "fulltext_assessed": 239
+}
