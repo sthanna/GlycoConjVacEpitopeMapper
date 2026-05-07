@@ -1,6 +1,6 @@
 # Computational Epitope Mapping of Glycoconjugate Vaccines Using a Multi-Agent Virtual Laboratory
 
-**Authors:** Prof. S. Thanna (PI), AI Research Team (Glyco-Immunologist, Comp. Chemist, ML Specialist, Bioinformatician)  
+**Authors:** Dr. S. Thanna (PI), AI Research Team (Glyco-Immunologist, Comp. Chemist, ML Specialist, Bioinformatician)  
 **Date:** January 2026  
 **Project Repository:** `GlycoConjVacEpitopeMapper`
 
